@@ -15,6 +15,7 @@ Use this tool responsibly and for legitimate purposes only.
 **Note:** It is important to be aware of and comply with the laws and regulations governing cybersecurity and ethical hacking activities in your jurisdiction. Unauthorized access or malicious activities may result in legal consequences.
 
 **Descripción del Script**
+
 El script proporcionado automatiza la descarga, instalación y configuración de la herramienta Netcat en sistemas Windows. Netcat, o "nc.exe," es una utilidad de red versátil que permite la comunicación en redes a través de puertos TCP o UDP. Este script se enfoca en la instalación de la versión para Windows de Netcat.
 
 **Instrucciones de Uso**
