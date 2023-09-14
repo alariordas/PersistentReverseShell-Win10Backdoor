@@ -39,6 +39,7 @@ Before using this script, ensure that you have:
 - PowerShell enabled for script execution. You can do this by running:
 
 ```powershell
-Set-ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
+
 
 
