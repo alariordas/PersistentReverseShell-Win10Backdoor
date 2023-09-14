@@ -41,5 +41,3 @@ Before using this script, ensure that you have:
 ```powershell
 Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 
-
-
