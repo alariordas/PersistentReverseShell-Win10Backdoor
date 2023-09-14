@@ -13,7 +13,7 @@
     Expand-Archive -Path $zipFilePath -DestinationPath $destinationPath
 
     # UNZIP DEL NC.EXE EN SYSTEM32: Mover el archivo nc.exe a la carpeta System32
-    $ncFilePath = "C:\Users\alari\Downloads\netcat-1.11\netcat-1.11\nc.exe"
+    $ncFilePath = "C:\Users\$usuarioActual\Downloads\netcat-1.11\netcat-1.11\nc.exe"
     $system32Path = "C:\Windows\System32"
 
     # Mover nc.exe a la carpeta System32
