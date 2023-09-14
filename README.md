@@ -37,6 +37,7 @@ Before using this script, ensure that you have:
 - Windows operating system.
 - Administrator privileges.
 - PowerShell enabled for script execution. You can do this by running:
+- Windows Defender desactivated during the execution of the script
 
 ```powershell
 Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
