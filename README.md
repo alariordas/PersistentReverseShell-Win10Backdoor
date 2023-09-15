@@ -36,12 +36,16 @@ Before using this script, ensure that you have:
 
 - Windows operating system.
 - Administrator privileges.
-- PowerShell enabled for script execution. You can do this by running:
 - Windows Defender desactivated during the execution of the script
+- PowerShell enabled for script execution. You can do this by running:
 
 ```powershell
 Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 ```
+Or Press `Windows + R` and type:
+```powershell
+powershell -nop -ep bypass -c IEX(IWR Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force -UseBasicParsing);
+````
 
 ## Usage
 
