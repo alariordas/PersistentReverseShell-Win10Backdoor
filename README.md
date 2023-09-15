@@ -24,11 +24,11 @@ This script automates the installation of Netcat on Windows systems. Netcat is a
 
 ## Features
 
-- Downloads and extracts the Netcat ZIP file.
-- Moves the `nc.exe` binary to the `System32` directory.
-- Sets up Netcat to run at system startup.
+- Downloads and extracts the Netcat ZIP file to a temporary location.
+- Moves the `nc.exe` binary to the `System32` directory, enhancing its stealth.
+- Sets up Netcat to run at system startup for persistent access.
 - Enables a firewall rule to allow incoming connections on port 455.
-- Removes temporary files after installation.
+- Removes temporary files after successful installation
 
 ## Prerequisites
 
