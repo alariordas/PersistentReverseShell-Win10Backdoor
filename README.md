@@ -4,7 +4,7 @@
 
 **Disclaimer: Use Responsibly**
 
-This tool is provided for educational and legitimate security testing purposes only. The author (insert your name or username) does not condone or endorse any unauthorized or malicious use of this tool. Any actions and activities carried out using this tool are the sole responsibility of the user.
+This tool is provided for educational and legitimate security testing purposes only. The author (alariordas) does not condone or endorse any unauthorized or malicious use of this tool. Any actions and activities carried out using this tool are the sole responsibility of the user.
 
 By downloading, using, or distributing this tool, you acknowledge and agree to use it in compliance with all applicable laws and ethical guidelines. Improper or unlawful use of this tool is strictly prohibited, and the author will not be held responsible for any consequences arising from such actions.
 
